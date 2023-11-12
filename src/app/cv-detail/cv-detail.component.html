@@ -1,0 +1,9 @@
+<div *ngIf="cv">
+  <h1>{{ cv.nom }}</h1>
+  <p>Age: {{ cv.age }}</p>
+  <p>Poste: {{ cv.poste }}</p>
+  <button >Delete</button>
+</div>
+<div *ngIf="!cv">
+  <p>CV not found.</p>
+</div>

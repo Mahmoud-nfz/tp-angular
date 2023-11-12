@@ -8,6 +8,7 @@
       [poste]="cv.poste"
     ></app-cv-card>
     <button (click)="hire(cv)">Embaucher</button>
+    <button [routerLink]="['/cv-detail', cv.id]">View Details</button>
   </div>
 </div>
 
@@ -20,6 +21,7 @@
       [age]="cv.age"
       [poste]="cv.poste"
     ></app-cv-card>
+    <button [routerLink]="['/cv-detail', cv.id]">View Details</button>
   </div>
 </div>
 
