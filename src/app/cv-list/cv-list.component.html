@@ -1,0 +1,28 @@
+<h1>Candidats:</h1>
+<div style="display: flex; flex-direction: row">
+  <div *ngFor="let cv of cvs">
+    <app-cv-card
+      [name]="cv.nom"
+      [image]="cv.image"
+      [age]="cv.age"
+      [poste]="cv.poste"
+    ></app-cv-card>
+    <button (click)="hire(cv)">Embaucher</button>
+  </div>
+</div>
+
+<h1>Candidats:</h1>
+<div style="display: flex; flex-direction: row">
+  <div *ngFor="let cv of hiredEmployees">
+    <app-cv-card
+      [name]="cv.nom"
+      [image]="cv.image"
+      [age]="cv.age"
+      [poste]="cv.poste"
+    ></app-cv-card>
+  </div>
+</div>
+
+<div style="margin-bottom: 4em"></div>
+
+<app-cv-card></app-cv-card>
