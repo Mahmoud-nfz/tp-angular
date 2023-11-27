@@ -1,0 +1,17 @@
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+
+  li {
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  li:hover {
+    background-color: #f0f0f0;
+  }

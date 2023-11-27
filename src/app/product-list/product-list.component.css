@@ -1,0 +1,20 @@
+/* product-list.component.css */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Change this line to have 4 columns */
+    gap: 16px;
+  }
+  
+  .product-card {
+    border: 1px solid #ccc;
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+  

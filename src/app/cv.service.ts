@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { ToastrService } from 'ngx-toastr';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,7 @@ export class CvService {
         'https://www.clker.com/cliparts/5/7/4/5/139046043173967868munawar.jpg',
     },
     {
-      id: -1,
+      id: -2,
       nom: 'Mounir',
       age: 21,
       poste: 'MSc',
@@ -57,7 +57,7 @@ export class CvService {
     this.cvs.push(cv);
   }
 
-  getCvs() {
+  getCvs():CV[] {
     return this.cvs;
   }
 

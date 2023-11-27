@@ -1,0 +1,8 @@
+<form [formGroup]="myForm">
+  <input type="text" formControlName="name" (input)="onInputChange($event)" />
+  <ul *ngIf="showOptions && filteredOptions.length > 0">
+    <li *ngFor="let option of filteredOptions" (click)="selectOption(option)">
+      {{ option }}
+    </li>
+  </ul>
+</form>

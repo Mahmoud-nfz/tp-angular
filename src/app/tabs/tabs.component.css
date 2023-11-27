@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tab-container {
+    display: flex;
+  }
+
+  .tab {
+    cursor: pointer;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+  }
+
+  .tab:hover {
+    background-color: #e0e0e0;
+  }
+
+  .tab-content {
+    display: none;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 0 0 5px 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .tab-content.active {
+    display: block;
+  }

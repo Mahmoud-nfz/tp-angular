@@ -3,19 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CvListComponent } from './cv-list/cv-list.component';
 import { CvCardComponent } from './cv-card/cv-card.component';
 import { CvDetailComponent } from './cv-detail/cv-detail.component';
-import { AppRoutingModule } from './app-routing.module';
+import { TabsComponent } from './tabs/tabs.component';
+import { CvSearchComponent } from './cv-search/cv-search.component';
+import { StreamsComponent } from './streams/streams.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CvListComponent,
     CvCardComponent,
-    CvDetailComponent
+    CvDetailComponent,
+    TabsComponent,
+    CvSearchComponent,
+    StreamsComponent,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,8 +32,9 @@ import { AppRoutingModule } from './app-routing.module';
     ToastrModule.forRoot(),
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

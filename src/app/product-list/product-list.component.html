@@ -1,0 +1,11 @@
+<p>product-list works!</p>
+
+<div class="product-grid">
+  <div *ngFor="let product of products$ | async" class="product-card">
+    <img [src]="product.thumbnail" alt="{{ product.title }}" />
+    <h3>{{ product.title }}</h3>
+  </div>
+</div>
+<button *ngIf="hasMoreProducts" (click)="loadMoreProducts()">
+  Load More Products
+</button>

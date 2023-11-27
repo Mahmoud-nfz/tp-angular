@@ -1,8 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CV, CvService } from '../cv.service';
-import { EmbaucheService } from '../embauche.service';
-import { ToastrService } from 'ngx-toastr';
-import { CvCardComponent } from '../cv-card/cv-card.component';
 
 @Component({
   selector: 'app-cv-list',
@@ -10,26 +7,13 @@ import { CvCardComponent } from '../cv-card/cv-card.component';
   styleUrls: ['./cv-list.component.css'],
 })
 export class CvListComponent {
-  cvs: CV[] = [];
-  hiredEmployees: CV[] = [];
+  @Input() cvs: CV[] = [];
+  @Input() hiredEmployees: CV[] = [];
+  @Input() hire: Function = (cv: CV) => {console.log('Not initialized', cv);};
 
-  constructor(
-    private cvService: CvService,
-    private embaucheService: EmbaucheService,
-    private toastr: ToastrService
-  ) {
-    this.cvs = cvService.getCvs();
-    this.hiredEmployees = embaucheService.getHiredEmployees();
+  invokeHire(cv: CV): void {   
+    console.log('Clicked Hire', cv); 
+    this.hire(cv);
   }
 
-  hire(cv: CV) {
-    if (this.embaucheService.hireEmployee(cv)) {
-      // Successfully hired
-      this.hiredEmployees = this.embaucheService.getHiredEmployees();
-    } else {
-      this.toastr.warning(`${cv.nom} is already hired.`, 'Warning');
-      // CV is already hired, show a warning (you can use Angular Material's MatSnackBar or another notification library)
-      // Example: this.toastr.warning('This person is already hired.', 'Warning');
-    }
-  }
 }

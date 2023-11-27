@@ -1,0 +1,30 @@
+<div class="tab-container">
+  <div
+    class="tab"
+    [ngStyle]="{
+      'background-color': selectedTab == 'juniors' ? 'lightblue' : ''
+    }"
+    (click)="selectTab('juniors')"
+  >
+    Juniors
+  </div>
+  <div
+    class="tab"
+    [ngStyle]="{
+      'background-color': selectedTab == 'seniors' ? 'lightblue' : ''
+    }"
+    (click)="selectTab('seniors')"
+  >
+    Seniors
+  </div>
+</div>
+
+<div style="margin: 1em">
+  <app-cv-search></app-cv-search>
+</div>
+
+<app-cv-list
+  [cvs]="filteredCvs"
+  [hiredEmployees]="filteredHiredEmployees"
+  [hire]="hire"
+></app-cv-list>

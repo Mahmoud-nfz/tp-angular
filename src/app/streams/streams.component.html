@@ -1,0 +1,22 @@
+<p>streams works!</p>
+
+<div [formGroup]="numberForm">
+    <label for="stream1">Stream 1:</label>
+    <input id="stream1" formControlName="stream1" type="number">
+  
+    <label for="stream2">Stream 2:</label>
+    <input id="stream2" formControlName="stream2" type="number">
+  
+    <h2>Merge Result</h2>
+    <p>{{ mergeResult$ | async }}</p>
+  
+    <h2>Reduce Result</h2>
+    <p>{{ reduceResult$ | async }}</p>
+  
+    <h2>Scan Results</h2>
+    <p>{{ scanResult$ | async }}</p>
+  
+    <!-- Terminate button -->
+    <button (click)="terminateStreams()">Terminate Streams</button>
+  </div>
+  
