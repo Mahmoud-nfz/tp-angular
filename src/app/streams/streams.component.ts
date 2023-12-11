@@ -31,17 +31,17 @@ export class StreamsComponent implements OnInit {
 
     // Get observables from form controls
     //@ts-ignore
-    const stream1$: Observable<number | undefined> =
+    const stream1$: Observable<number > =
       this.numberForm.get('stream1')?.valueChanges;
     //@ts-ignore
-    const stream2$: Observable<number | undefined> =
+    const stream2$: Observable<number > =
       this.numberForm.get('stream2')?.valueChanges;
 
     // Merge with termination
     this.mergeResult$ = merge(stream1$, stream2$).pipe(
       // Ensure that only valid numbers are emitted
-      takeUntil(this.destroy$),
-      scan((_, value) => value as number, 0)
+      takeUntil(this.destroy$)
+      // scan((_, value) => value as number, 0)
     );
 
     // Reduce with termination

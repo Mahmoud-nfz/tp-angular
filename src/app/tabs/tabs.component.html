@@ -24,7 +24,7 @@
 </div>
 
 <app-cv-list
-  [cvs]="filteredCvs"
-  [hiredEmployees]="filteredHiredEmployees"
+  [cvs]="filteredCvs$ | async"
+  [hiredEmployees]="filteredHiredEmployees$ | async"
   [hire]="hire"
 ></app-cv-list>

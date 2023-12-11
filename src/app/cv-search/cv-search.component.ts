@@ -20,7 +20,7 @@ export class CvSearchComponent {
   constructor(private formBuilder: FormBuilder) {
     this.myForm = this.formBuilder.group({
       name: [''],
-    });
+    })
 
     this.searchSubscription = this.searchSubject
       .pipe(debounceTime(500), distinctUntilChanged())

@@ -1,28 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CV, CvService } from '../cv.service';
 import { EmbaucheService } from '../embauche.service';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css'],
 })
-export class TabsComponent {
-  cvs: CV[] = [];
-  hiredEmployees: CV[] = [];
-  filteredCvs: CV[] = [];
-  filteredHiredEmployees: CV[] = [];
+export class TabsComponent implements OnInit {
+  cvs$: Observable<CV[]>;
+  hiredEmployees$: Observable<CV[]>;
+  filteredCvs$!: Observable<CV[]>;
+  filteredHiredEmployees$!: Observable<CV[]>;
 
   selectedTab: string = 'juniors';
 
   constructor(
-    private cvService: CvService,
+    public cvService: CvService,
     private embaucheService: EmbaucheService,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {
-    this.cvs = cvService.getCvs();
-    this.hiredEmployees = embaucheService.getHiredEmployees();
+    this.cvs$ = this.cvService.getCvs().pipe(
+      tap((cvs) => {
+        this.selectTab(this.selectedTab);
+      })
+    );
+    this.hiredEmployees$ = this.embaucheService.getHiredEmployees();
+  }
+
+  ngOnInit() {
     this.selectTab('juniors');
   }
 
@@ -30,28 +38,29 @@ export class TabsComponent {
     console.log('Hiring', cv);
     if (this.embaucheService.hireEmployee(cv)) {
       // Successfully hired
-      this.hiredEmployees = this.embaucheService.getHiredEmployees();
+      this.hiredEmployees$ = this.embaucheService.getHiredEmployees();
       this.selectTab(this.selectedTab);
-      console.log(this.hiredEmployees);
-      console.log(this.filteredHiredEmployees);
     } else {
       this.toastr.warning(`${cv.nom} is already hired.`, 'Warning');
-      // CV is already hired, show a warning (you can use Angular Material's MatSnackBar or another notification library)
-      // Example: this.toastr.warning('This person is already hired.', 'Warning');
     }
   };
 
   selectTab(tab: string) {
+    console.log('Selected tab', tab);
     this.selectedTab = tab;
     if (tab === 'juniors') {
-      this.filteredCvs = this.cvs.filter((cv) => cv.age < 40);
-      this.filteredHiredEmployees = this.hiredEmployees.filter(
-        (cv) => cv.age < 40
+      this.filteredCvs$ = this.cvs$.pipe(
+        map((cvs) => cvs.filter((cv) => cv.age < 40))
+      );
+      this.filteredHiredEmployees$ = this.hiredEmployees$.pipe(
+        map((cvs) => cvs.filter((cv) => cv.age < 40))
       );
     } else if (tab === 'seniors') {
-      this.filteredCvs = this.cvs.filter((cv) => cv.age >= 40);
-      this.filteredHiredEmployees = this.hiredEmployees.filter(
-        (cv) => cv.age >= 40
+      this.filteredCvs$ = this.cvs$.pipe(
+        map((cvs) => cvs.filter((cv) => cv.age >= 40))
+      );
+      this.filteredHiredEmployees$ = this.hiredEmployees$.pipe(
+        map((cvs) => cvs.filter((cv) => cv.age >= 40))
       );
     }
   }

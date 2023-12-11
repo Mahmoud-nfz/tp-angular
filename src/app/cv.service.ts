@@ -57,8 +57,8 @@ export class CvService {
     this.cvs.push(cv);
   }
 
-  getCvs():CV[] {
-    return this.cvs;
+  getCvs(): Observable<CV[]> {
+    return of(this.cvs);
   }
 
   getCvById(id: number) {

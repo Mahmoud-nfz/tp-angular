@@ -7,8 +7,8 @@ import { CV, CvService } from '../cv.service';
   styleUrls: ['./cv-list.component.css'],
 })
 export class CvListComponent {
-  @Input() cvs: CV[] = [];
-  @Input() hiredEmployees: CV[] = [];
+  @Input() cvs: CV[] | null = [];
+  @Input() hiredEmployees: CV[] | null = [];
   @Input() hire: Function = (cv: CV) => {console.log('Not initialized', cv);};
 
   invokeHire(cv: CV): void {   

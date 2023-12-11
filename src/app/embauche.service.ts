@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CV } from './cv.service';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,6 @@ export class EmbaucheService {
   }
 
   getHiredEmployees() {
-    return this.hiredEmployees;
+    return of(this.hiredEmployees);
   }
 }
